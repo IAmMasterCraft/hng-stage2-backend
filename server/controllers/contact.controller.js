@@ -1,5 +1,5 @@
 const { mailer } = require("../services/mailer");
-const ADMIN = process.env.ADMIN_MAIL;
+const ADMIN = process.env.ADMIN_INCOMING_MAIL;
 
 exports.contact = async (request, response) => {
     if (request.method == "GET") return response.status(200).json({ status: `${request.method} request recieved, can only process POST request for this endpoint` });
