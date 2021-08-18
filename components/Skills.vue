@@ -17,7 +17,7 @@
                     <img src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" />
                 </figure>
             </div>
-            <div class="column">
+            <div class="column is-hidden-touch">
                 <figure class="image is-64x64">
                     <img src="https://profilinator.rishav.dev/skills-assets/vuejs-original-wordmark.svg" />
                 </figure>

@@ -51,7 +51,7 @@
                 </div>
 
                 
-                <div class="notification is-danger is-light" v-if="notification">
+                <div :class="`notification ${theme} is-light`" v-if="notification">
                     <button class="delete" @click="notification = null"></button>
                     {{ notification }}
                 </div>
@@ -74,6 +74,7 @@ export default {
             },
             notification: null,
             messageSent: false,
+            theme: "is-danger",
         }
     },
     methods: {
@@ -81,10 +82,13 @@ export default {
             const valArr = Object.values(this.contact);
             if (valArr.includes(null) || valArr.includes("")) {
                 this.notification = "All fields are required!";
+                this.theme = "is-danger";
                 return false;
             }
             const postContact = await axios.post("api/contact", this.contact);
-            console.log(postContact);
+            this.theme = "is-success";
+            this.notification = postContact.data.status;
+            this.messageSent = true;
         }, //end of contactMe
     },
 }
