@@ -44,7 +44,7 @@
                         <div class="field">
                             <label class="label has-text-white">Message</label>
                             <div class="control">
-                                <textarea class="textarea is-primary is-rounded" placeholder="Enter your message"></textarea>
+                                <textarea class="textarea is-primary is-rounded" placeholder="Enter your message" style="border-radius: 20px;"></textarea>
                             </div>
                         </div>
                     </div>
