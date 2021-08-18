@@ -1,3 +1,6 @@
+# Task 1 - printing name:
+[name_task.js](./name_task.js)
+
 # mastercraft-resume-be
 
 ## Build Setup
