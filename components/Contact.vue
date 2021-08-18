@@ -10,12 +10,12 @@
                         My response may not be as fast as the speed of light but I will definitely respond as soon as possible.
                     </span>
                 </p>
-                <div class="columns has-text-left px-5">
+                <div class="columns has-text-left px-5" v-if="!messageSent">
                     <div class="column">
                         <div class="field">
                             <label class="label has-text-white">Name</label>
                             <div class="control">
-                                <input class="input is-primary is-rounded" type="text" placeholder="Enter your name">
+                                <input class="input is-primary is-rounded" v-model="contact.name" type="text" placeholder="Enter your name">
                             </div>
                         </div>
                     </div>
@@ -24,18 +24,18 @@
                         <div class="field">
                             <label class="label has-text-white">Email</label>
                             <div class="control">
-                                <input class="input is-primary is-rounded" type="email" placeholder="Enter your email">
+                                <input class="input is-primary is-rounded" v-model="contact.email" type="email" placeholder="Enter your email">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="columns has-text-left px-5">
+                <div class="columns has-text-left px-5" v-if="!messageSent">
                     <div class="column">
                         <div class="field">
                             <label class="label has-text-white">Subject</label>
                             <div class="control">
-                                <input class="input is-primary is-rounded" type="text" placeholder="Enter the subject of the message">
+                                <input class="input is-primary is-rounded" v-model="contact.subject" type="text" placeholder="Enter the subject of the message">
                             </div>
                         </div>
                     </div>
@@ -44,14 +44,48 @@
                         <div class="field">
                             <label class="label has-text-white">Message</label>
                             <div class="control">
-                                <textarea class="textarea is-primary is-rounded" placeholder="Enter your message" style="border-radius: 20px;"></textarea>
+                                <textarea class="textarea is-primary is-rounded" v-model="contact.message" placeholder="Enter your message" style="border-radius: 20px;"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button class="button is-primary is-rounded is-fullwidth">Send Message</button>
+                
+                <div class="notification is-danger is-light" v-if="notification">
+                    <button class="delete" @click="notification = null"></button>
+                    {{ notification }}
+                </div>
+
+                <button class="button is-primary is-rounded is-fullwidth" @click="contactMe" v-if="!messageSent">Send Message</button>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            contact: {
+                name: null,
+                email: null,
+                subject: null,
+                message: null,
+            },
+            notification: null,
+            messageSent: false,
+        }
+    },
+    methods: {
+        async contactMe () {
+            const valArr = Object.values(this.contact);
+            if (valArr.includes(null) || valArr.includes("")) {
+                this.notification = "All fields are required!";
+                return false;
+            }
+            const postContact = await axios.post("api/contact", this.contact);
+            console.log(postContact);
+        }, //end of contactMe
+    },
+}
+</script>

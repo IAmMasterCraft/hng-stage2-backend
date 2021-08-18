@@ -16,6 +16,11 @@ export default {
         href:
           "https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap"
       }
+    ],
+    script: [
+      {
+        src: "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
+      }
     ]
   },
 
@@ -42,7 +47,21 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
+      name: "MasterCraft Resume-BE",
+      short_name: "MasterCraft",
+      description: "Resume for MasterCraft",
+      background_color: "#121212",
       lang: "en"
+    },
+    meta: {
+      name: "MasterCraft Resume-BE",
+      author: "MasterCraft",
+      description: "Resume for MasterCraft",
+      theme_color: "#121212",
+      nativeUI: true,
+      appleStatusBarStyle: "black-translucent",
+      mobileApp: true,
+      mobileAppIOS: true
     }
   },
 

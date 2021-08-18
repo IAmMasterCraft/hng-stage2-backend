@@ -4,6 +4,8 @@ const express = require("express");
 // Create express instance
 const app = express();
 
+app.use(express.json());
+
 // Require API routes
 const contact = require("./routes/contact.route");
 
