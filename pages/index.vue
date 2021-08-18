@@ -27,5 +27,10 @@
                 </div>
             </div>
         </div>
+        <div class="columns px-4">
+            <div class="column">
+                <Contact />
+            </div>
+        </div>
     </div>
 </template>
