@@ -78,10 +78,20 @@ export default {
         }
     },
     methods: {
+        isEmail () {
+            const emailRegex = /^([\w-.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            return emailRegex.test(this.contact.email);
+        }, //end of isEmail
         async contactMe () {
             const valArr = Object.values(this.contact);
             if (valArr.includes(null) || valArr.includes("")) {
                 this.notification = "All fields are required!";
+                this.theme = "is-danger";
+                return false;
+            }
+
+            if (!this.isEmail()) {
+                this.notification = "Invalid email address!";
                 this.theme = "is-danger";
                 return false;
             }
