@@ -50,6 +50,7 @@
                     </div>
                 </div>
 
+                <progress class="progress is-small is-success" max="100" v-if="progress">15%</progress>
                 
                 <div :class="`notification ${theme} is-light`" v-if="notification">
                     <button class="delete" @click="notification = null"></button>
@@ -73,6 +74,7 @@ export default {
                 message: null,
             },
             notification: null,
+            progress: null,
             messageSent: false,
             theme: "is-danger",
         }
@@ -83,22 +85,28 @@ export default {
             return emailRegex.test(this.contact.email);
         }, //end of isEmail
         async contactMe () {
+            this.progress = true;
             const valArr = Object.values(this.contact);
             if (valArr.includes(null) || valArr.includes("")) {
                 this.notification = "All fields are required!";
                 this.theme = "is-danger";
+                this.progress = null;
                 return false;
             }
 
             if (!this.isEmail()) {
                 this.notification = "Invalid email address!";
                 this.theme = "is-danger";
+                this.progress = null;
                 return false;
             }
+            this.notification = "Please wait...";
+            this.theme = "is-warning";
+            this.messageSent = true;
             const postContact = await axios.post("api/contact", this.contact);
             this.theme = "is-success";
             this.notification = postContact.data.status;
-            this.messageSent = true;
+            this.progress = null;
         }, //end of contactMe
     },
 }

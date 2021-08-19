@@ -7,8 +7,8 @@ exports.contact = async (request, response) => {
     const { name, email, subject, message } = request.body;
     const respondToUser = await mailer({to: email, subject: `Re: ${subject}`, text: `Thank you for contacting me concerning ${subject}. I will get in touch ASAP!`});
     const sendToAdmin = await mailer({to: ADMIN, subject: `${subject} from ${name}`, text: message});
-    console.warn(sendToAdmin);
-    console.warn(respondToUser);
+    // console.warn(sendToAdmin);
+    // console.warn(respondToUser);
     if (sendToAdmin.error || respondToUser.error) {
         return response.status(200).json({
           status: "Something went wrong",
