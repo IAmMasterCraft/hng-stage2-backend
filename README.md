@@ -2,6 +2,8 @@
 [name_task.js](./name_task.js)
 
 # mastercraft-resume-be
+![MasterCraft-Resume](resume.png)
+
 ![MasterCraft-Resume](demo.gif)
 
 ## Build Setup
