@@ -2,7 +2,7 @@
 [name_task.js](./name_task.js)
 
 # mastercraft-resume-be
-![MasterCraft-Resume](resdemoume.webm)
+![MasterCraft-Resume](demo.webm)
 
 ## Build Setup
 
